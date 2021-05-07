@@ -29,38 +29,36 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        selectedGender = GenderType.male;
-                      });
+                  child: ReusableCard(
+                    handleTap: () {
+                      setState(
+                        () {
+                          selectedGender = GenderType.male;
+                        },
+                      );
                     },
-                    child: ReusableCard(
-                      boxColor: selectedGender == GenderType.male
-                          ? activeBoxColor
-                          : inactiveBoxColor,
-                      childWidget: IconContent(
-                        icon: FontAwesomeIcons.mars,
-                        text: 'MALE',
-                      ),
+                    boxColor: selectedGender == GenderType.male
+                        ? activeBoxColor
+                        : inactiveBoxColor,
+                    childWidget: IconContent(
+                      icon: FontAwesomeIcons.mars,
+                      text: 'MALE',
                     ),
                   ),
                 ),
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
+                  child: ReusableCard(
+                    handleTap: () {
                       setState(() {
                         selectedGender = GenderType.female;
                       });
                     },
-                    child: ReusableCard(
-                      boxColor: selectedGender == GenderType.female
-                          ? activeBoxColor
-                          : inactiveBoxColor,
-                      childWidget: IconContent(
-                        icon: FontAwesomeIcons.venus,
-                        text: 'FEMALE',
-                      ),
+                    boxColor: selectedGender == GenderType.female
+                        ? activeBoxColor
+                        : inactiveBoxColor,
+                    childWidget: IconContent(
+                      icon: FontAwesomeIcons.venus,
+                      text: 'FEMALE',
                     ),
                   ),
                 ),
