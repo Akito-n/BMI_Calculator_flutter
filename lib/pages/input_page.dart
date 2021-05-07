@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+const defaultBoxColor = Color(0xFF1D1E33);
+const defaultHeight = 80.0;
+
 class InputPage extends StatefulWidget {
   @override
   _InputPageState createState() => _InputPageState();
@@ -19,12 +22,12 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: ReusableCard(
-                    boxColor: Color(0xFF1D1E33),
+                    boxColor: defaultBoxColor,
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
-                    boxColor: Color(0xFF1D1E33),
+                    boxColor: defaultBoxColor,
                   ),
                 ),
               ],
@@ -32,7 +35,7 @@ class _InputPageState extends State<InputPage> {
           ),
           Expanded(
             child: ReusableCard(
-              boxColor: Color(0xFF1D1E33),
+              boxColor: defaultBoxColor,
             ),
           ),
           Expanded(
@@ -47,6 +50,11 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
+          Container(
+            height: defaultHeight,
+            margin: EdgeInsets.only(top: 10.0),
+            color: Colors.pinkAccent,
+          )
         ],
       ),
       floatingActionButton: Theme(
