@@ -7,34 +7,15 @@ const activeBoxColor = Color(0xFF1D1E33);
 const inactiveBoxColor = Color(0xFF111328);
 const defaultHeight = 80.0;
 
+enum GenderType { male, female }
+
 class InputPage extends StatefulWidget {
   @override
   _InputPageState createState() => _InputPageState();
 }
 
 class _InputPageState extends State<InputPage> {
-  Color maleCardColor = inactiveBoxColor;
-  Color femaleCardColor = inactiveBoxColor;
-
-  void handleGenderTap({int selectedGender}) {
-    setState(() {
-      if (selectedGender == 1) {
-        if (maleCardColor == inactiveBoxColor) {
-          maleCardColor = activeBoxColor;
-          femaleCardColor = inactiveBoxColor;
-        } else {
-          maleCardColor = inactiveBoxColor;
-        }
-      } else if (selectedGender == 2) {
-        if (femaleCardColor == inactiveBoxColor) {
-          femaleCardColor = activeBoxColor;
-          maleCardColor = inactiveBoxColor;
-        } else {
-          femaleCardColor = inactiveBoxColor;
-        }
-      }
-    });
-  }
+  GenderType selectedGender;
 
   @override
   Widget build(BuildContext context) {
@@ -50,10 +31,14 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
-                      handleGenderTap(selectedGender: 1);
+                      setState(() {
+                        selectedGender = GenderType.male;
+                      });
                     },
                     child: ReusableCard(
-                      boxColor: maleCardColor,
+                      boxColor: selectedGender == GenderType.male
+                          ? activeBoxColor
+                          : inactiveBoxColor,
                       childWidget: IconContent(
                         icon: FontAwesomeIcons.mars,
                         text: 'MALE',
@@ -64,10 +49,14 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
-                      handleGenderTap(selectedGender: 2);
+                      setState(() {
+                        selectedGender = GenderType.female;
+                      });
                     },
                     child: ReusableCard(
-                      boxColor: femaleCardColor,
+                      boxColor: selectedGender == GenderType.female
+                          ? activeBoxColor
+                          : inactiveBoxColor,
                       childWidget: IconContent(
                         icon: FontAwesomeIcons.venus,
                         text: 'FEMALE',
