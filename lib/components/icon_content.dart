@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-
-const iconSize = 80.0;
-const boxHeight = 15.0;
-const fontSize = 18.0;
-const textColor = Color(0xFF8D8E98);
+import 'package:flutter_bmi_clulc/utility/constant.dart';
 
 class IconContent extends StatelessWidget {
   IconContent({Key key, this.icon, this.text}) : super(key: key);
@@ -18,16 +14,10 @@ class IconContent extends StatelessWidget {
       children: [
         Icon(
           icon,
-          size: iconSize,
+          size: kIconSize,
         ),
-        SizedBox(height: boxHeight),
-        Text(
-          text,
-          style: TextStyle(
-            fontSize: fontSize,
-            color: textColor,
-          ),
-        ),
+        SizedBox(height: kBoxHeight),
+        Text(text, style: kLabelTextStyle),
       ],
     );
   }

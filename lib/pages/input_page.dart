@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bmi_clulc/Components/icon_content.dart';
 import 'package:flutter_bmi_clulc/Components/reusable_card.dart';
+import 'package:flutter_bmi_clulc/utility/constant.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-const activeBoxColor = Color(0xFF1D1E33);
-const inactiveBoxColor = Color(0xFF111328);
-const defaultHeight = 80.0;
 
 enum GenderType { male, female }
 
@@ -24,6 +21,7 @@ class _InputPageState extends State<InputPage> {
         title: Text('BMI CALCULATOR'),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
             child: Row(
@@ -38,8 +36,8 @@ class _InputPageState extends State<InputPage> {
                       );
                     },
                     boxColor: selectedGender == GenderType.male
-                        ? activeBoxColor
-                        : inactiveBoxColor,
+                        ? kActiveBoxColor
+                        : kInactiveBoxColor,
                     childWidget: IconContent(
                       icon: FontAwesomeIcons.mars,
                       text: 'MALE',
@@ -54,12 +52,10 @@ class _InputPageState extends State<InputPage> {
                       });
                     },
                     boxColor: selectedGender == GenderType.female
-                        ? activeBoxColor
-                        : inactiveBoxColor,
+                        ? kActiveBoxColor
+                        : kInactiveBoxColor,
                     childWidget: IconContent(
-                      icon: FontAwesomeIcons.venus,
-                      text: 'FEMALE',
-                    ),
+                        icon: FontAwesomeIcons.venus, text: 'FEMALE'),
                   ),
                 ),
               ],
@@ -67,7 +63,24 @@ class _InputPageState extends State<InputPage> {
           ),
           Expanded(
             child: ReusableCard(
-              boxColor: activeBoxColor,
+              boxColor: kActiveBoxColor,
+              childWidget: Column(
+                children: [
+                  Text(
+                    'HEIGHT',
+                    style: kLabelTextStyle,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        '180',
+                        style: kNumberTextStyle,
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
           Expanded(
@@ -75,19 +88,19 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: ReusableCard(
-                    boxColor: activeBoxColor,
+                    boxColor: kActiveBoxColor,
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
-                    boxColor: activeBoxColor,
+                    boxColor: kActiveBoxColor,
                   ),
                 ),
               ],
             ),
           ),
           Container(
-            height: defaultHeight,
+            height: kBottomHeight,
             margin: EdgeInsets.only(top: 10.0),
             color: Colors.pinkAccent,
           )
