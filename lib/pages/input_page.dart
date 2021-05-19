@@ -13,6 +13,8 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   GenderType selectedGender;
+  int height = 170;
+  int weight = 65;
 
   @override
   Widget build(BuildContext context) {
@@ -65,19 +67,47 @@ class _InputPageState extends State<InputPage> {
             child: ReusableCard(
               boxColor: kActiveBoxColor,
               childWidget: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'HEIGHT',
                     style: kLabelTextStyle,
                   ),
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        '180',
+                        height.toString(),
                         style: kNumberTextStyle,
+                      ),
+                      Text(
+                        'cm',
+                        style: kLabelTextStyle,
                       )
                     ],
+                  ),
+                  SliderTheme(
+                    data: SliderTheme.of(context).copyWith(
+                        inactiveTickMarkColor: Color(0xFF8D8E98),
+                        thumbColor: Color(0xFFEB1555),
+                        thumbShape:
+                            RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                        overlayColor: Color(0x29EB1555),
+                        overlayShape:
+                            RoundSliderOverlayShape(overlayRadius: 30.0),
+                        activeTrackColor: Colors.white),
+                    child: Slider(
+                      value: height.toDouble(),
+                      onChanged: (double newValue) {
+                        setState(() {
+                          height = newValue.round();
+                        });
+                      },
+                      min: 100.0,
+                      max: 240.0,
+                    ),
                   )
                 ],
               ),
@@ -88,8 +118,35 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: ReusableCard(
-                    boxColor: kActiveBoxColor,
-                  ),
+                      boxColor: kActiveBoxColor,
+                      childWidget: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('WEIGHT', style: kLabelTextStyle),
+                          Text(weight.toString(), style: kNumberTextStyle),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              RoundIconButton(
+                                  icon: FontAwesomeIcons.minus,
+                                  handlePress: () {
+                                    setState(() {
+                                      weight--;
+                                    });
+                                  }),
+                              SizedBox(width: 10.0),
+                              RoundIconButton(
+                                icon: FontAwesomeIcons.plus,
+                                handlePress: () {
+                                  setState(() {
+                                    weight++;
+                                  });
+                                },
+                              ),
+                            ],
+                          )
+                        ],
+                      )),
                 ),
                 Expanded(
                   child: ReusableCard(
@@ -115,6 +172,23 @@ class _InputPageState extends State<InputPage> {
           child: Icon(Icons.add),
         ),
       ),
+    );
+  }
+}
+
+class RoundIconButton extends StatelessWidget {
+  RoundIconButton({this.icon, this.handlePress});
+  final IconData icon;
+  final Function handlePress;
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      child: Icon(icon),
+      onPressed: handlePress,
+      constraints: BoxConstraints.tightFor(width: 56, height: 56),
+      shape: CircleBorder(),
+      fillColor: Color(0xFF4C4F5E),
     );
   }
 }
