@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bmi_clulc/Components/icon_content.dart';
 import 'package:flutter_bmi_clulc/Components/reusable_card.dart';
+import 'package:flutter_bmi_clulc/components/BarButton.dart';
 import 'package:flutter_bmi_clulc/utility/constant.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -15,6 +16,7 @@ class _InputPageState extends State<InputPage> {
   GenderType selectedGender;
   int height = 170;
   int weight = 65;
+  int age = 20;
 
   @override
   Widget build(BuildContext context) {
@@ -151,15 +153,44 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: ReusableCard(
                     boxColor: kActiveBoxColor,
+                    childWidget: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('AGE', style: kLabelTextStyle),
+                        Text(age.toString(), style: kNumberTextStyle),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                                icon: FontAwesomeIcons.minus,
+                                handlePress: () {
+                                  setState(() {
+                                    age--;
+                                  });
+                                }),
+                            SizedBox(width: 10.0),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              handlePress: () {
+                                setState(() {
+                                  age++;
+                                });
+                              },
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ],
             ),
           ),
-          Container(
-            height: kBottomHeight,
-            margin: EdgeInsets.only(top: 10.0),
-            color: Colors.pinkAccent,
+          BarButton(
+            title: 'CALCULATE',
+            onTap: () {
+              Navigator.pushNamed(context, 'result');
+            },
           )
         ],
       ),
@@ -186,6 +217,7 @@ class RoundIconButton extends StatelessWidget {
     return RawMaterialButton(
       child: Icon(icon),
       onPressed: handlePress,
+      elevation: 5.0,
       constraints: BoxConstraints.tightFor(width: 56, height: 56),
       shape: CircleBorder(),
       fillColor: Color(0xFF4C4F5E),
