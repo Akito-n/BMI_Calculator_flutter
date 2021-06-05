@@ -28,7 +28,7 @@ class ResultPage extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.all(15.0),
               child: Text(
-                args.title,
+                'Result Page',
                 style: kTitleTextStyle,
               ),
             ),
@@ -42,14 +42,14 @@ class ResultPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    args.result,
+                    args.title,
                     style: TextStyle(
                         color: Colors.green,
                         fontWeight: FontWeight.bold,
                         fontSize: 22.0),
                   ),
                   Text(
-                    '18.3',
+                    args.result,
                     style: kBMITextStyle,
                   ),
                   Text(

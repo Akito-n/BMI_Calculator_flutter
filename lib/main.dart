@@ -14,9 +14,7 @@ class BMICalculator extends StatelessWidget {
         '/': (context) => InputPage(),
         ResultPage.routeName: (context) => ResultPage(),
       },
-      // onGenerateInitialRoutes: (settings) {
-      //   if (true) {}
-      // },
+
       theme: ThemeData.dark().copyWith(
         primaryColor: Color(0xFF0A0E21),
         scaffoldBackgroundColor: Color(0xFF0A0E21),
@@ -24,16 +22,3 @@ class BMICalculator extends StatelessWidget {
     );
   }
 }
-
-// class SampleWithPush extends StatelessWidget {
-//   static Route<dynamic> route() {
-//     return MaterialPageRoute<dynamic>(
-//       builder: (_) => SampleWithPush(),
-//     );
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Anything();
-//   }
-// }
