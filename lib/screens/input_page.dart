@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bmi_clulc/Components/icon_content.dart';
 import 'package:flutter_bmi_clulc/Components/reusable_card.dart';
+import 'package:flutter_bmi_clulc/calculate.dart';
 import 'package:flutter_bmi_clulc/components/BarButton.dart';
+import 'package:flutter_bmi_clulc/screens/result_page.dart';
 import 'package:flutter_bmi_clulc/utility/constant.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -189,7 +191,12 @@ class _InputPageState extends State<InputPage> {
           BarButton(
             title: 'CALCULATE',
             onTap: () {
-              Navigator.pushNamed(context, 'result');
+              Calculate calc = Calculate(weight: weight, height: height);
+              Navigator.pushNamed(context, ResultPage.routeName,
+                  arguments: ResultRouteArgs(
+                      title: calc.getResultTitle(),
+                      result: calc.getResultBmi(),
+                      advise: calc.getAdvise()));
             },
           )
         ],
